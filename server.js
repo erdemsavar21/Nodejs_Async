@@ -19,7 +19,7 @@ const main = async () => {
 
 
 
-    const res = await business.method1();
+    const res = await business.method1().catch(reject => console.log(reject));
     console.log(res);
 
 

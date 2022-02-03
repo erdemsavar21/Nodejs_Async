@@ -13,6 +13,9 @@ class Business
                 await new Promise(resolve => {
 
                     setTimeout(() => {
+                        
+                        reject('abooo'); //
+                        //throw Error('errrorrr') //
                         console.log('method1 first process');
                         resolve();
                     }, 10000);
