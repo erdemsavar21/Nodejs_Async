@@ -10,9 +10,8 @@ class Business {
             try {
 
                 const res = await this.method2();
-                
-                await this.method3(res, resolve);
 
+                await this.method3(res, resolve);
 
 
             } catch (error) {
@@ -29,27 +28,12 @@ class Business {
 
     async method2() {
 
+       const res = await this.method2_1();
 
-        return new Promise(async (resolve, reject) => {
+        console.log('method2 second process');
 
-            try {
+        return res;
 
-
-                setTimeout(() => {
-                    console.log('method2 finished');
-                    resolve("testtt")
-                }, 5000);
-                // callback();
-                console.log('method2 second process');
-
-            } catch (error) {
-
-                reject(error);
-
-            }
-
-
-        });
 
     }
 
@@ -67,14 +51,17 @@ class Business {
 
     }
 
-    async method4() {
+    async method2_1() {
 
-        setTimeout(() => {
-            console.log('method4 finished');
-            callback();
-        }, 10000);
-        // callback();
-        console.log('method4 second process');
+        return new Promise(async (resolve, reject) => {
+
+            setTimeout(() => {
+                console.log('method2 first process');
+                resolve("testtt");
+            }, 5000);
+
+        });
+
     }
 
 
