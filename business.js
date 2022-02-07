@@ -4,27 +4,21 @@ class Business
 
     }
 
-     async method1(callback){
+     async method1(){
 
         return new Promise(async (resolve, reject) => {
 
             try {
 
-                await new Promise(resolve => {
+                await this.method4();
+                await this.method2();
 
-                    setTimeout(() => {
-                        
-                        reject('abooo'); //
-                        //throw Error('errrorrr') //
-                        console.log('method1 first process');
-                        resolve();
-                    }, 10000);
-
-                });
+                const resp = await new Promise(resolve => {
+                    resolve(this.method3());
+                })
                 
+                resolve(resp);
                 
-                console.log('method1 second process');
-                resolve("XXX");
                 
             } catch (error) {
 
@@ -48,27 +42,24 @@ class Business
         console.log('method2 second process');
     }
 
-    async method3(callback){
+    async method3(){
 
         setTimeout(() => {
             console.log('method3 finished');
-         
+            return "test";
         }, 1000);
        // callback();
        console.log('method3 second process');
     }
 
-    method4(){
-        return new Promise((resolve,reject) => {
+    async method4(callback){
 
-            setTimeout(() => {
-            
-                resolve('xxx');
-             
-            }, 2000);
-
-        });
-        
+        setTimeout(() => {
+            console.log('method4 finished');
+         
+        }, 10000);
+       // callback();
+       console.log('method4 second process');
     }
 
 

@@ -20,12 +20,13 @@ const main = async () => {
 
 
     const res = await business.method1().catch(reject => console.log(reject));
+    
     console.log(res);
 
 
-    await business.method2();
+    //await business.method2();
 
-    await business.method3();
+    //await business.method3();
 
     //const ret = await business.method4();
     //console.log(ret);
