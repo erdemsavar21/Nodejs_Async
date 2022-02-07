@@ -1,74 +1,80 @@
-class Business
-{
-    constructor(){
+class Business {
+    constructor() {
 
     }
 
-     async method1(callback){
+    async method1() {
 
         return new Promise(async (resolve, reject) => {
 
             try {
 
-                await new Promise(resolve => {
+                const res = await this.method2();
+                
+                await this.method3(res, resolve);
 
-                    setTimeout(() => {
-                        
-                        reject('abooo'); //
-                        //throw Error('errrorrr') //
-                        console.log('method1 first process');
-                        resolve();
-                    }, 10000);
 
-                });
-                
-                
-                console.log('method1 second process');
-                resolve("XXX");
-                
+
             } catch (error) {
 
                 reject(error);
-                
+
             }
-            
+
 
         });
 
-        
+
     }
 
-    async method2(callback){
+    async method2() {
 
-        setTimeout(() => {
-            console.log('method2 finished');
-           
-        }, 5000);
-        // callback();
-        console.log('method2 second process');
+
+        return new Promise(async (resolve, reject) => {
+
+            try {
+
+
+                setTimeout(() => {
+                    console.log('method2 finished');
+                    resolve("testtt")
+                }, 5000);
+                // callback();
+                console.log('method2 second process');
+
+            } catch (error) {
+
+                reject(error);
+
+            }
+
+
+        });
+
     }
 
-    async method3(callback){
+    async method3(res, callback) {
+
+
 
         setTimeout(() => {
             console.log('method3 finished');
-         
-        }, 1000);
-       // callback();
-       console.log('method3 second process');
+            callback(res);
+        }, 2000);
+        // callback();
+        console.log('method3 second process');
+
+
     }
 
-    method4(){
-        return new Promise((resolve,reject) => {
+    async method4() {
 
-            setTimeout(() => {
-            
-                resolve('xxx');
-             
-            }, 2000);
-
-        });
-        
+        setTimeout(() => {
+            console.log('method4 finished');
+            callback();
+        }, 10000);
+        // callback();
+        console.log('method4 second process');
     }
 
 

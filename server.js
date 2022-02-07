@@ -14,21 +14,14 @@ api.use("/get", (req, res, next) => {
 });
 
 const main = async () => {
+    
     console.log('Process started');
     const business = new Business();
 
 
-
-    const res = await business.method1().catch(reject => console.log(reject));
-    console.log(res);
-
-
-    await business.method2();
-
-    await business.method3();
-
-    //const ret = await business.method4();
-    //console.log(ret);
+    const ret = await business.method1();
+ 
+    console.log(ret);
 
 
     console.log('Process end');
