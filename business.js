@@ -1,65 +1,67 @@
-class Business
-{
-    constructor(){
+class Business {
+    constructor() {
 
     }
 
-     async method1(){
+    async method1() {
 
         return new Promise(async (resolve, reject) => {
 
             try {
 
-                await this.method4();
-                await this.method2();
+                const res = await this.method2();
 
-                const resp = await new Promise(resolve => {
-                    resolve(this.method3());
-                })
-                
-                resolve(resp);
-                
-                
+                await this.method3(res, resolve);
+
+
             } catch (error) {
 
                 reject(error);
-                
+
             }
-            
+
 
         });
 
-        
+
     }
 
-    async method2(callback){
+    async method2() {
 
-        setTimeout(() => {
-            console.log('method2 finished');
-           
-        }, 5000);
-        // callback();
+       const res = await this.method2_1();
+
         console.log('method2 second process');
+
+        return res;
+
+
     }
 
-    async method3(){
+    async method3(res, callback) {
+
+
 
         setTimeout(() => {
             console.log('method3 finished');
-            return "test";
-        }, 1000);
-       // callback();
-       console.log('method3 second process');
+            callback(res);
+        }, 2000);
+        // callback();
+        console.log('method3 second process');
+
+
     }
 
-    async method4(callback){
+    async method2_1() {
 
-        setTimeout(() => {
-            console.log('method4 finished');
-         
-        }, 10000);
-       // callback();
-       console.log('method4 second process');
+        return new Promise(async (resolve, reject) => {
+
+            setTimeout(() => {
+                console.log('method2 first process');
+                resolve("testtt");
+            }, 5000);
+
+        });
+
     }
 
 

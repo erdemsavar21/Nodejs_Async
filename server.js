@@ -3,36 +3,26 @@ const Business = require('./business');
 
 const api = express();
 
-api.use("/get", (req, res, next) => {
+api.use("/get", async (req, res, next) => {
 
-    main();
+    const result = await main();
 
     res.json({
-        success : true
+        success : result
     });
 
 });
 
 const main = async () => {
+    
     console.log('Process started');
     const business = new Business();
 
-
-
-    const res = await business.method1().catch(reject => console.log(reject));
-    
-    console.log(res);
-
-
-    //await business.method2();
-
-    //await business.method3();
-
-    //const ret = await business.method4();
-    //console.log(ret);
-
-
+    const ret = await business.method1();
+ 
     console.log('Process end');
+
+    return ret;
 }
 
 
